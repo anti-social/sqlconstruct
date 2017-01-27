@@ -5,27 +5,20 @@ language: python
 python:
 - "2.7"
 - "3.4"
-- "3.5"
-- "3.6"
 - "pypy"
 
-cache:
-  directories:
-  - $HOME/.cache/pip
-before_cache:
-- rm -f $HOME/.cache/pip/log/debug.log
-
 env:
-- SQLA_VERSION=0.9.10
-- SQLA_VERSION=1.0.17
-- SQLA_VERSION=1.1.5
+- SQLA_VERSION=0.9
+- SQLA_VERSION=1.0
+- SQLA_VERSION=1.1
+- SQLA_VERSION=dev
 
 install:
-- pip install sqlalchemy==$SQLA_VERSION
+- pip install tox-travis
 - pip install codecov
 
 script:
-- python -m unittest tests
+- tox
 
 after_success:
 - codecov
